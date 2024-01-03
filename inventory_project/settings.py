@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-   # 'dashboard.apps.DashboardConfig',
-   # 'user.apps.UserConfig',
-   # 'crispy_forms',
-   # 'crispy_bootstrap4',
+    'dashboard.apps.DashboardConfig',
+    'user.apps.UserConfig',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 #bootstrap 4 crispy settings
@@ -152,4 +152,4 @@ STATICFILES_DIRS = [
 
 #MEDIA_URL = '/media/'
 
-#LOGIN_REDIRECT_URL = 'dashboard_index'
+LOGIN_REDIRECT_URL = 'dashboard_index'

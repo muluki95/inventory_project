@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-#from user.views import register, profile, profile_update
+from user.views import register
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -24,9 +24,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('dashboard.urls')),
-   # path('register/', register, name='user-register'),
+    path('register/', register, name='user-register'),
    # path('profile/', profile, name='user-profile'),
    # path('profile/update/', profile_update, name='user-profile-update'),
-   # path('', auth_views.LoginView.as_view(template_name='user/login.html'), name='user-login'),
-   # path('logout/', auth_views.LogoutView.as_view(template_name='user/logout.html'), name='user-logout'),
+    path('', auth_views.LoginView.as_view(template_name='user/login.html'), name='user-login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='user/logout.html'), name='user-logout'),
    ]# + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-#from dashboard.models import Product
+from dashboard.models import Product
 #from .forms import ProductForm
  
 
