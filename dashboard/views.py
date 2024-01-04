@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from dashboard.models import Product
-#from .forms import ProductForm
+from dashboard.models import Product, Order
+from dashboard.forms import ProductForm
+from django.contrib.auth.models import User
  
 
 # Create your views here.
@@ -12,26 +13,71 @@ def index(request):
 
 @login_required(login_url='user-login')
 def staff(request):
-    return render(request, 'dashboard/staff.html')
+    employees = User.objects.all()
+    context={
+         "employees" : employees
+    }
+    return render(request, 'dashboard/staff.html', context)
 
+def staff_detail(request, pk):
+     employee = User.objects.get(id=pk)
+     context = {
+          "employee" : employee
+     }
+     return render(request, 'dashboard/staff_detail.html', context)
 @login_required(login_url='user-login')
 def products(request):
- #   items = Product.objects.all()
- #   if request.method == 'POST':
- #       form = ProductForm(request.POST)
- #      if form.is_valid():
- #           new_item = form.save(commit=False)
- #           new_item.author = request.user
- #           new_item.save()
- #           return index(request)
+    items = Product.objects.all() #Using object relational mapping
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            new_item = form.save(commit=False)
+            new_item.author = request.user
+            new_item.save()
+            return redirect('dashboard_products')
         
- #   else:
- #       form = ProductForm()    
- #   context = {
- #       'items' : items,
- #   }
-    return render(request, 'dashboard/products.html')
+    else:
+        form = ProductForm()    
+    context = {
+        'items' : items,
+        'form': form,
+    }
+    return render(request, 'dashboard/products.html', context)
+
+def product_delete(request, pk):
+        item = Product.objects.get(id=pk)
+        if request.method == 'POST':
+             item.delete()
+             return redirect('dashboard_products')
+        context = {
+        'item': item
+        }
+        return render(request, 'dashboard/products_delete.html', context)
+
+def product_update(request, pk):
+     item = Product.objects.get(id=pk)
+     if request.method == 'POST':
+          form = ProductForm(request.POST, instance=item)
+          if form.is_valid():
+               form.save()
+               return redirect('dashboard_products')
+     else:
+          form = ProductForm(instance=item)
+          context={
+               "form": form
+          }
+               
+          
+     return render(request, 'dashboard/products_update.html', context)
+
+        
+        
+
 
 @login_required(login_url='user-login')
 def orders(request):
-    return render(request, 'dashboard/orders.html')
+    user_orders = Order.objects.all()
+    context = {
+         'user_orders': user_orders
+         }
+    return render(request, 'dashboard/orders.html', context)

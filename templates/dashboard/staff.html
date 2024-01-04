@@ -15,21 +15,21 @@
             <thead class="bg-info text-white">
                 <tr>
                     <th scope="col"></th>
-                    <th scope="col">First</th>
-                    <th scope="col">Phone</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
                 </tr>
             </thead>
             <tbody>
-                
+                {% for employee in employees %}
                 <tr>
                     <th scope="row"><a class="btn btn-info btn-sm"
-                            href="">View</a></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                            href="{% url 'dashboard_staff_detail' employee.id %}">View</a></th>
+                    <td>{{ employee.username }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.profile.phone }}</td>
                 </tr>
-               
+               {% endfor %}
             </tbody>
         </table>
     </div>

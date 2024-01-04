@@ -1,0 +1,57 @@
+{% extends 'partials/base.html' %}
+{% block title%} Staff {% endblock%}
+
+
+
+{% block content %}
+
+{% include 'partials/topnav.html' %}
+
+<div class="row my-4">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                Profile Page
+            </div>
+            <div class="row p-3">
+                <div class="col-md-8">
+                    <table class="table table-borderless">
+                        <thead>
+                            <span class="h4">Profile Information</span class="h4">
+                            <hr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Name</th>
+                                <td>{{ employee.username}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td>{{ employee.email}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Phone</th>
+                                <td>{{ employee.profile.phone}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Address</th>
+                                <td> {{ employee.profile.address}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-4">
+                    {% if user.profile.image %}
+                    <img class="img-thumbnail" src="{{ employee.profile.image.url }}" alt="profile-image">
+                    {% else %}
+                    <p>No profile image available</p>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

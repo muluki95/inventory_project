@@ -17,6 +17,7 @@
             <h5>Add New Products</h5>
             <hr>
             <form method="POST">
+                {% csrf_token %}
                 {{ form|crispy}}
                
                 <input class="btn btn-success btn-block" type="submit" value="Add">
@@ -41,9 +42,9 @@
                     <td> {{ item.quantity }}</td>
                     <td>
                         <a class="btn btn-info btn-sm mr-2"
-                            href="">Edit</a>
+                            href="{% url 'dashboard_products_update' item.id %}">Edit</a>
                         <a class="btn btn-danger btn-sm ml-2"
-                            href="">Delete</a>
+                            href="{% url 'dashboard_products_delete' item.id %}">Delete</a>
                     </td>
                 </tr>
                {% endfor %}
