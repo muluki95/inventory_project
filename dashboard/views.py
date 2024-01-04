@@ -6,15 +6,15 @@ from dashboard.models import Product
  
 
 # Create your views here.
-#@login_required(login_url='user-login')
+@login_required(login_url='user-login')
 def index(request):
     return render(request, 'dashboard/index.html')
 
-#@login_required(login_url='user-login')
+@login_required(login_url='user-login')
 def staff(request):
     return render(request, 'dashboard/staff.html')
 
-#@login_required(login_url='user-login')
+@login_required(login_url='user-login')
 def products(request):
  #   items = Product.objects.all()
  #   if request.method == 'POST':
@@ -32,6 +32,6 @@ def products(request):
  #   }
     return render(request, 'dashboard/products.html')
 
-#@login_required(login_url='user-login')
+@login_required(login_url='user-login')
 def orders(request):
     return render(request, 'dashboard/orders.html')
