@@ -27,21 +27,20 @@
                                 <th scope="col">Product</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Quantity</th>
+                                <th scope="col">Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+                            {% for order in orders %}
+                            {% if order.staff == user %}
                             <tr>
-                                <td> Books </td>
-                                <td> Stationery</td>
-                                <td> 10 </td>
+                                <td>{{order.product.name}}</td>
+                                <td>{{order.product.category}}</td>
+                                <td>{{order.product.quantity}}</td>
+                                <td>{{order.date}}</td>
                             </tr>
-                            <tr>
-                                <td> Pens </td>
-                                <td> Stationery</td>
-                                <td> 10 </td>
-                            </tr>
-                            
+                            {% endif %}
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

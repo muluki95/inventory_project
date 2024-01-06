@@ -16,18 +16,20 @@
                     <th scope="col">Category</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Odered by</th>
+                    <th scope="col">Date</th>
                 </tr>
             </thead>
             <tbody>
-               
+               {% for user_orders in user_orders%}
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ user_orders.product}}</td>
+                    <td>{{ user_orders.product.category}}</td>
+                    <td>{{ user_orders.order_quantity}}</td>
+                    <td> {{user_orders.staff.username}}</td>
+                    <td>{{ user_orders.date}}</td>
                 </tr>
                 
-               
+                {% endfor %}
             </tbody>
         </table>
     </div>
